@@ -12,6 +12,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def item_class
+    item_type.to_s.singularize.capitalize.constantize
+  end
+
   def render_specific(view, params = {})
     render "items/#{item_type}/#{view}", params
   end
