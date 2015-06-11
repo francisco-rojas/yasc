@@ -11,7 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610025715) do
+ActiveRecord::Schema.define(version: 20150611020808) do
+
+  create_table "books", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.decimal "nrc",         default: 0.0
+    t.boolean "active",      default: true
+  end
+
+  add_index "books", ["active"], name: "index_books_on_active"
+  add_index "books", ["name"], name: "index_books_on_name", unique: true
+
+  create_table "cars", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.decimal "nrc",           default: 0.0
+    t.decimal "mrc",           default: 0.0
+    t.boolean "active",        default: true
+    t.integer "purchase_type"
+  end
+
+  add_index "cars", ["active"], name: "index_cars_on_active"
+  add_index "cars", ["name"], name: "index_cars_on_name", unique: true
+  add_index "cars", ["purchase_type"], name: "index_cars_on_purchase_type"
+
+  create_table "houses", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.decimal "nrc",           default: 0.0
+    t.decimal "mrc",           default: 0.0
+    t.boolean "active",        default: true
+    t.integer "purchase_type"
+  end
+
+  add_index "houses", ["active"], name: "index_houses_on_active"
+  add_index "houses", ["name"], name: "index_houses_on_name", unique: true
+  add_index "houses", ["purchase_type"], name: "index_houses_on_purchase_type"
+
+  create_table "lamps", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.decimal "nrc",         default: 0.0
+    t.boolean "active",      default: true
+  end
+
+  add_index "lamps", ["active"], name: "index_lamps_on_active"
+  add_index "lamps", ["name"], name: "index_lamps_on_name", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
