@@ -6,4 +6,8 @@ class CubiclesForm
   attr_accessor *PARAMS
 
   validates_presence_of *PARAMS
+
+  def persisted?
+    false
+  end
 end

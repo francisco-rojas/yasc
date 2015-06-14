@@ -5,7 +5,7 @@
     <div class="panel-body">
       <div class="row">
         <div class="form-group col-sm-4">
-          <%= f.label :product, 'Chair' %>
+          <%= f.label :product, 'Chairs' %>
           <%= f.select :product, @products.map { |p| [p.name, p.id] },
               { include_blank: 'Please choose a product'},
               class: 'form-control selectpicker select-filter' %>
