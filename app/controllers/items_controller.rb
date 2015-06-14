@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def item_type
-    if %(books, lamps, houses, cars).include?(params[:type])
+    if %(cublicles, chairs).include?(params[:type])
       @item_type ||= params[:type].try(:to_sym)
     else
       raise('Invalid Item Type')
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def item_class
-    item_type.to_s.singularize.capitalize.constantize
+    item_type.to_s.singularize.camelize.constantize
   end
 
   def form_object_type
@@ -31,16 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def form_object_class
-    case item_type
-    when :books
-      BooksForm
-    when :lamps
-      LampsForm
-    when :houses
-      HousesForm
-    when :cars
-      CarsForm
-    end
+    form_object_type.camelize.constantize
   end
 
   def load_form_object
@@ -49,19 +40,15 @@ class ItemsController < ApplicationController
 
   def load_item_list
     case
-    when item_type == :lamps
-      @lamps = Lamp.active.ordered_by_name
-    when item_type == :cars
-      @cars = Car.active.ordered_by_name
-    when item_type == :houses
-      @houses = House.active.ordered_by_name
-    when item_type == :books
-      @books = Book.active.ordered_by_name
+    when item_type == :chairs
+      @chairs = Chair.active.ordered_by_model
+    when item_type == :cublicles
+      @cublicles = Cubicle.active.ordered_by_unit_of_measure
     end
   end
 
   def product_type
-    if %(books, lamps, houses, cars).include?(params[:product_type])
+    if %(cublicles, chairs).include?(params[:product_type])
       @product_type ||= params[:product_type].try(:to_sym)
     else
       @product_type = nil

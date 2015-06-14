@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150614142631) do
     t.integer  "area",            default: 0,   null: false
     t.text     "description",     default: "",  null: false
     t.integer  "unit_of_measure", default: 0,   null: false
+    t.integer  "purchase_type",   default: 0,   null: false
     t.decimal  "nrc",             default: 0.0, null: false
     t.decimal  "mrc",             default: 0.0, null: false
     t.datetime "created_at",                    null: false
