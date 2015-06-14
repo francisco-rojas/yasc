@@ -11,53 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611020808) do
+ActiveRecord::Schema.define(version: 20150614142631) do
 
-  create_table "books", force: :cascade do |t|
-    t.string  "name"
-    t.text    "description"
-    t.decimal "nrc",         default: 0.0
-    t.boolean "active",      default: true
+  create_table "buildings", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "address",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "books", ["active"], name: "index_books_on_active"
-  add_index "books", ["name"], name: "index_books_on_name", unique: true
-
-  create_table "cars", force: :cascade do |t|
-    t.string  "name"
-    t.text    "description"
-    t.decimal "nrc",           default: 0.0
-    t.decimal "mrc",           default: 0.0
-    t.boolean "active",        default: true
-    t.integer "purchase_type"
+  create_table "chairs", force: :cascade do |t|
+    t.string   "model",       default: "", null: false
+    t.text     "description", default: "", null: false
+    t.decimal  "nrc",                      null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "cars", ["active"], name: "index_cars_on_active"
-  add_index "cars", ["name"], name: "index_cars_on_name", unique: true
-  add_index "cars", ["purchase_type"], name: "index_cars_on_purchase_type"
-
-  create_table "houses", force: :cascade do |t|
-    t.string  "name"
-    t.text    "description"
-    t.decimal "nrc",           default: 0.0
-    t.decimal "mrc",           default: 0.0
-    t.boolean "active",        default: true
-    t.integer "purchase_type"
+  create_table "cubicles", force: :cascade do |t|
+    t.integer  "height",          default: 0,   null: false
+    t.integer  "area",            default: 0,   null: false
+    t.text     "description",     default: "",  null: false
+    t.integer  "unit_of_measure", default: 0,   null: false
+    t.decimal  "nrc",             default: 0.0, null: false
+    t.decimal  "mrc",             default: 0.0, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  add_index "houses", ["active"], name: "index_houses_on_active"
-  add_index "houses", ["name"], name: "index_houses_on_name", unique: true
-  add_index "houses", ["purchase_type"], name: "index_houses_on_purchase_type"
-
-  create_table "lamps", force: :cascade do |t|
-    t.string  "name"
-    t.text    "description"
-    t.decimal "nrc",         default: 0.0
-    t.boolean "active",      default: true
+  create_table "floors", force: :cascade do |t|
+    t.integer  "number",      null: false
+    t.integer  "building_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "lamps", ["active"], name: "index_lamps_on_active"
-  add_index "lamps", ["name"], name: "index_lamps_on_name", unique: true
+  add_index "floors", ["number", "building_id"], name: "index_floors_on_number_and_building_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,33 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 5.times do |n|
+  n += 1
   User.create!(email: "user#{n}@example.com",
                password: 'User1234',
                password_confirmation: 'User1234')
 
-  Car.create!(name: "Car#{n}",
-               description: "This is Car ##{n}",
-               nrc: rand(50_000..100_000),
-               mrc: rand(1000..2000),
-               purchase_type: n.even? ? :lease : :purchase)
+  b = Building.create!(name: "Building ##{Faker::Address.building_number}",
+                       address: "#{Faker::Address.city}, #{Faker::Address.street_name}")
 
-  House.create!(name: "House#{n}",
-               description: "This is House ##{n}",
-               nrc: rand(50_000..100_000),
-               mrc: rand(1000..20_000),
-               purchase_type: n.even? ? :lease : :purchase)
+  3.times do |i|
+    i += 1
+    b.floors.create(number: i)
+  end
 
-  Book.create!(name: "Book#{n}",
-               description: "This is Book ##{n}",
-               nrc: rand(10..100))
+  Chair.create!(model: Faker::Commerce.product_name,
+                description: Faker::Lorem.paragraph,
+                nrc: Faker::Commerce.price)
 
-  Lamp.create!(name: "Lamp#{n}",
-               description: "This is Lamp ##{n}",
-               nrc: rand(10..100))
+  Cubicle.create!(height: Faker::Number.number(1),
+                  area: Faker::Number.number(2),
+                  description: Faker::Lorem.paragraph,
+                  mrc: Faker::Commerce.price,
+                  nrc: Faker::Commerce.price)
+
 end
