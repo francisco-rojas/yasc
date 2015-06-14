@@ -1,6 +1,7 @@
 class CreateFloors < ActiveRecord::Migration
   def change
     create_table :floors do |t|
+      t.string :name, null: false, unique: true
       t.integer :number, null: false
       t.integer :building_id, null: false
 

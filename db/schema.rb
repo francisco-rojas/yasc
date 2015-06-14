@@ -21,26 +21,31 @@ ActiveRecord::Schema.define(version: 20150614142631) do
   end
 
   create_table "chairs", force: :cascade do |t|
-    t.string   "model",       default: "", null: false
-    t.text     "description", default: "", null: false
-    t.decimal  "nrc",                      null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",                       null: false
+    t.string   "model",       default: "",   null: false
+    t.text     "description", default: "",   null: false
+    t.decimal  "nrc",                        null: false
+    t.boolean  "active",      default: true, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "cubicles", force: :cascade do |t|
-    t.integer  "height",          default: 0,   null: false
-    t.integer  "area",            default: 0,   null: false
-    t.text     "description",     default: "",  null: false
-    t.integer  "unit_of_measure", default: 0,   null: false
-    t.integer  "purchase_type",   default: 0,   null: false
-    t.decimal  "nrc",             default: 0.0, null: false
-    t.decimal  "mrc",             default: 0.0, null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "name",                           null: false
+    t.integer  "height",          default: 0,    null: false
+    t.integer  "area",            default: 0,    null: false
+    t.text     "description",     default: "",   null: false
+    t.integer  "unit_of_measure", default: 0,    null: false
+    t.integer  "purchase_type",   default: 0,    null: false
+    t.decimal  "nrc",             default: 0.0,  null: false
+    t.decimal  "mrc",             default: 0.0,  null: false
+    t.boolean  "active",          default: true, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "floors", force: :cascade do |t|
+    t.string   "name",        null: false
     t.integer  "number",      null: false
     t.integer  "building_id", null: false
     t.datetime "created_at",  null: false

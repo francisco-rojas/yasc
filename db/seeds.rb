@@ -9,14 +9,16 @@
 
   3.times do |i|
     i += 1
-    b.floors.create(number: i)
+    b.floors.create(name: "Floor ##{i}", number: i)
   end
 
-  Chair.create!(model: Faker::Commerce.product_name,
+  Chair.create!(name: "Chair ##{n}",
+                model: "Chair #{Faker::Number.number(2)}",
                 description: Faker::Lorem.paragraph,
                 nrc: Faker::Commerce.price)
 
-  Cubicle.create!(height: Faker::Number.number(1),
+  Cubicle.create!(name: "Cubicle ##{n}",
+                  height: Faker::Number.number(1),
                   area: Faker::Number.number(2),
                   description: Faker::Lorem.paragraph,
                   mrc: Faker::Commerce.price,

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def new
     load_form_object
-    load_item_list
+    load_products
     render_specific 'new'
   end
 
@@ -31,20 +31,15 @@ class ItemsController < ApplicationController
   end
 
   def form_object_class
-    form_object_type.camelize.constantize
+    form_object_type.to_s.camelize.constantize
   end
 
   def load_form_object
     @form = form_object_class.new
   end
 
-  def load_item_list
-    case
-    when item_type == :chairs
-      @chairs = Chair.active.ordered_by_model
-    when item_type == :cublicles
-      @cublicles = Cubicle.active.ordered_by_unit_of_measure
-    end
+  def load_products
+    @products = item_class.all
   end
 
   def product_type
