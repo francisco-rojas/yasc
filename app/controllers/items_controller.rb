@@ -3,15 +3,13 @@ class ItemsController < ApplicationController
 
   def new
     load_form_object
-    load_products
     load_locations
+    load_products
     render_specific :new
   end
 
   def create
     load_form_object(form_object_params)
-    load_locations
-    load_products
     @form.submit(nil)
     render_specific(:create)
   end

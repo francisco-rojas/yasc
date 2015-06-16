@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614142631) do
+ActiveRecord::Schema.define(version: 20150616025130) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "address",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chair_products", force: :cascade do |t|
+    t.integer  "chair_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,6 +34,12 @@ ActiveRecord::Schema.define(version: 20150614142631) do
     t.boolean  "active",      default: true, null: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "cubicle_products", force: :cascade do |t|
+    t.integer  "cubicle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cubicles", force: :cascade do |t|
@@ -53,6 +65,30 @@ ActiveRecord::Schema.define(version: 20150614142631) do
   end
 
   add_index "floors", ["number", "building_id"], name: "index_floors_on_number_and_building_id", unique: true
+
+  create_table "items", force: :cascade do |t|
+    t.integer  "order_id",                    null: false
+    t.integer  "floor_id"
+    t.string   "room",                        null: false
+    t.integer  "quantity"
+    t.decimal  "cost_per_item", default: 0.0, null: false
+    t.decimal  "total_amount",  default: 0.0, null: false
+    t.integer  "product_id",                  null: false
+    t.integer  "product_type",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "building_id",                null: false
+    t.integer  "status",                     null: false
+    t.string   "number"
+    t.decimal  "total_amount", default: 0.0, null: false
+    t.integer  "items_count",  default: 0,   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

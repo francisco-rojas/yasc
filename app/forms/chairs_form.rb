@@ -5,6 +5,7 @@ class ChairsForm
   attr_accessor *PARAMS
 
   validates_presence_of *PARAMS
+  validates_numericality_of :quantity, only_integer: true
 
   def persisted?
     false
