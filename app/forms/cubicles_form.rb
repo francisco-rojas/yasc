@@ -10,4 +10,11 @@ class CubiclesForm
   def persisted?
     false
   end
+
+  def submit(purchase_order)
+    if valid?
+    else
+      false
+    end
+  end
 end

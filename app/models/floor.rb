@@ -5,4 +5,5 @@ class Floor < ActiveRecord::Base
   validates_uniqueness_of :name
   validates :number, uniqueness: { scope: :building_id }
 
+  default_scope { order(name: :asc) }
 end

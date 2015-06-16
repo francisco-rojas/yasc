@@ -1,0 +1,7 @@
+<% if form.errors.any? %>
+  $("#error_explanation").html("")
+  $("#error_explanation").append("<h2><%= pluralize(form.errors.count, "error") %> prohibited this article from being saved:</h2>")
+  $("#error_explanation").append(
+    "<ul>" + "<%= (form.errors.full_messages.map { |msg| "<li>" + msg + "</li>" }.join).html_safe %>" + "</ul>"
+  )
+<% end %>

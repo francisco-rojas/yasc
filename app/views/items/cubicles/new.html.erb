@@ -1,6 +1,6 @@
-<h1>Chairs</h1>
+<h1>Cubicles</h1>
 
-<%= form_for(@form, url: items_path(type: :chairs), remote: true) do |f| %>
+<%= form_for(@form, url: items_path(type: :cubicles), remote: true) do |f| %>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
@@ -9,7 +9,7 @@
       </div>
       <div class="row">
         <div class="form-group col-sm-4">
-          <%= f.label :product, 'Chairs' %>
+          <%= f.label :product, 'Cubicles' %>
           <%= f.select :product, @products.map { |p| [p.name, p.id] },
               { include_blank: 'Please choose a product'},
               class: 'form-control selectpicker select-filter' %>

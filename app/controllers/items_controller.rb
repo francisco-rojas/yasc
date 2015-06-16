@@ -1,21 +1,29 @@
 class ItemsController < ApplicationController
-  PRODUCT_NAMES = %(cublicles, chairs)
+  PRODUCT_NAMES = %(cubicles, chairs)
 
   def new
     load_form_object
     load_products
+    load_locations
     render_specific :new
   end
 
   def create
     load_form_object(form_object_params)
-    binding.pry
-    render_specific :create
+    load_locations
+    load_products
+    @form.submit(nil)
+    render_specific(:create)
   end
 
   private
   def form_object_params
     params.require(form_object_type).permit(form_object_class::PARAMS)
+  end
+
+  def load_locations
+    @buildings = Building.all
+    @floors = Floor.all
   end
 
   def item_type

@@ -12,9 +12,7 @@ class ChairsForm
 
   def submit(purchase_order)
     if valid?
-
     else
-      errors.add(:base, 'Errors preventing to save')
       false
     end
   end
