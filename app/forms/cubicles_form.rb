@@ -12,10 +12,28 @@ class CubiclesForm
     false
   end
 
-  def submit(purchase_order)
+  def submit(order)
     if valid?
+      add_to_cart(order)
     else
       false
     end
+  end
+
+  private
+  def data
+    PARAMS.inject({}) { |h, v| h[v] = send(v); h }
+  end
+
+  def add_to_cart(order)
+    purchaser = PurchaseService.new(order)
+    purchaser.add_to_cart(data, build_cubicle_product, quantity)
+  rescue => ex
+    Rails.logger.error ex
+    false
+  end
+
+  def build_cubicle_product
+    CubicleProduct.new(cubicle: product)
   end
 end

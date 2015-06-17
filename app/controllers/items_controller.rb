@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
 
   def create
     load_form_object(form_object_params)
-    @form.submit(nil)
+    @form.submit(current_order)
     render_specific(:create)
   end
 

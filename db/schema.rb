@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150616025130) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "order_id",                    null: false
+    t.integer  "building_id"
     t.integer  "floor_id"
     t.string   "room",                        null: false
     t.integer  "quantity"

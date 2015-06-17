@@ -2,6 +2,7 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.integer :order_id, null: false
+      t.integer :building_id
       t.integer :floor_id
       t.string :room, null: false
       t.integer :quantity

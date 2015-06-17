@@ -5,4 +5,6 @@ class Chair < ActiveRecord::Base
 
   validates_presence_of :name, :model, :description, :nrc
   validates_uniqueness_of :name
+
+  alias_attribute :cost_per_item, :nrc
 end

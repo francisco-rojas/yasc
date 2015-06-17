@@ -13,4 +13,5 @@ class Cubicle < ActiveRecord::Base
   validates_presence_of :nrc, if: -> (form) { form.purchase? }
   validates_presence_of :mrc, if: -> (form) { form.lease? }
 
+  alias_attribute :cost_per_item, :nrc
 end

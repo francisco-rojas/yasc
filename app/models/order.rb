@@ -11,4 +11,7 @@ class Order < ActiveRecord::Base
   validates :number, presence: true, unless: -> (order) { order.new_record? || order.opened? }
   validates_uniqueness_of :status, scope: [:user_id], if: -> (order) { order.opened? }
   validates :total_amount, numericality: { greater_than_or_equal_to: 0 }
+
+  scope :by_user, -> (user_id) { where(user_id: user_id) }
+  scope :with_purchase_items, -> { includes(:purchase_items) }
 end
