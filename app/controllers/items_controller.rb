@@ -10,8 +10,12 @@ class ItemsController < ApplicationController
 
   def create
     load_form_object(form_object_params)
-    @form.submit(current_order)
-    render_specific(:create)
+
+    if @form.submit(current_order)
+      render js: "window.location = '/checkout'"
+    else
+      render_specific(:create)
+    end
   end
 
   private

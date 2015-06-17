@@ -1,1 +1,3 @@
-<%= render partial: 'shared/validation_errors.js', locals: { form: @form } %>
+<% if @form.errors.any? %>
+  <%= render partial: 'shared/validation_errors.js', locals: { form: @form } %>
+<% end %>

@@ -19,6 +19,22 @@ class ChairsForm
     end
   end
 
+  def product=(id)
+    @product = Chair.find_by(id: id)
+  end
+
+  def building=(id)
+    @building = Building.find_by(id: id)
+  end
+
+  def floor=(id)
+    @floor = Floor.find_by(id: id)
+  end
+
+  def quantity=(value)
+    @quantity = value.try(:to_i)
+  end
+
   private
   def data
     PARAMS.inject({}) { |h, v| h[v] = send(v); h }
@@ -27,9 +43,9 @@ class ChairsForm
   def add_to_cart(order)
     purchaser = PurchaseService.new(order)
     purchaser.add_to_cart(data, build_chair_product, quantity)
-  rescue => ex
-    Rails.logger.error ex
-    false
+  # rescue => ex
+  #   Rails.logger.error ex
+  #   false
   end
 
   def build_chair_product

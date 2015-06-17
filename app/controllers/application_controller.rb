@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   def current_order
     @current_order ||= current_user.
-                       purchase_orders.
-                       with_purchase_items.
+                       orders.
+                       with_items.
                        opened.
                        first_or_create(status: :opened,
                                        user: current_user,

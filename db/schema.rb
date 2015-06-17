@@ -67,28 +67,28 @@ ActiveRecord::Schema.define(version: 20150616025130) do
   add_index "floors", ["number", "building_id"], name: "index_floors_on_number_and_building_id", unique: true
 
   create_table "items", force: :cascade do |t|
-    t.integer  "order_id",                    null: false
+    t.integer  "order_id",                                            null: false
     t.integer  "building_id"
     t.integer  "floor_id"
-    t.string   "room",                        null: false
+    t.string   "room",                                                null: false
     t.integer  "quantity"
-    t.decimal  "cost_per_item", default: 0.0, null: false
-    t.decimal  "total_amount",  default: 0.0, null: false
-    t.integer  "product_id",                  null: false
-    t.integer  "product_type",                null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.decimal  "cost_per_item", precision: 8, scale: 2, default: 0.0, null: false
+    t.decimal  "total_amount",  precision: 8, scale: 2, default: 0.0, null: false
+    t.integer  "product_id",                                          null: false
+    t.string   "product_type",                                        null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer  "user_id",                    null: false
-    t.integer  "building_id",                null: false
-    t.integer  "status",                     null: false
+    t.integer  "user_id",                                            null: false
+    t.integer  "building_id"
+    t.integer  "status",                                             null: false
     t.string   "number"
-    t.decimal  "total_amount", default: 0.0, null: false
-    t.integer  "items_count",  default: 0,   null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.decimal  "total_amount", precision: 8, scale: 2, default: 0.0, null: false
+    t.integer  "items_count",                          default: 0,   null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "users", force: :cascade do |t|

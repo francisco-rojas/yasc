@@ -2,7 +2,7 @@ class CubiclesForm
   include ActiveModel::Model
 
   PARAMS = [:quantity, :building, :floor, :room,
-            :product, :purchase_type].freeze
+            :product].freeze
   attr_accessor *PARAMS
 
   validates_presence_of *PARAMS
@@ -18,6 +18,22 @@ class CubiclesForm
     else
       false
     end
+  end
+
+  def product=(id)
+    @product = Cubicle.find_by(id: id)
+  end
+
+  def building=(id)
+    @building = Building.find_by(id: id)
+  end
+
+  def floor=(id)
+    @floor = Floor.find_by(id: id)
+  end
+
+  def quantity=(value)
+    @quantity = value.try(:to_i)
   end
 
   private

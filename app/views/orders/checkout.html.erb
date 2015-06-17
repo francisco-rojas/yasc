@@ -1,0 +1,37 @@
+<h1>Checkout</h1>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-3">
+        Product
+      </div>
+      <div class="col-sm-3">
+        Quantity
+      </div>
+      <div class="col-sm-3">
+        Cost per item
+      </div>
+      <div class="col-sm-3">
+        Total Amount
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <% current_order.items.each do |i| %>
+        <div class="col-sm-3">
+          <%= i.product.name %>
+        </div>
+        <div class="col-sm-3">
+          <%= i.quantity %>
+        </div>
+        <div class="col-sm-3">
+          <%= i.cost_per_item %>
+        </div>
+        <div class="col-sm-3">
+          <%= i.total_amount %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

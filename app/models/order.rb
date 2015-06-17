@@ -13,5 +13,5 @@ class Order < ActiveRecord::Base
   validates :total_amount, numericality: { greater_than_or_equal_to: 0 }
 
   scope :by_user, -> (user_id) { where(user_id: user_id) }
-  scope :with_purchase_items, -> { includes(:purchase_items) }
+  scope :with_items, -> { includes(:items) }
 end
