@@ -3,35 +3,51 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         Product
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         Quantity
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         Cost per item
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         Total Amount
+      </div>
+      <div class="col-sm-2">
+        Remove
       </div>
     </div>
     <br>
-    <div class="row">
-      <% current_order.items.each do |i| %>
-        <div class="col-sm-3">
+    <% current_order.items.each do |i| %>
+      <div class="row">
+        <div class="col-sm-2">
           <%= i.product.name %>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <%= i.quantity %>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <%= i.cost_per_item %>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <%= i.total_amount %>
         </div>
-      <% end %>
+        <div class="col-sm-2">
+          <%= link_to 'X', remove_item_path(i), method: :delete %>
+        </div>
+      </div>
+    <% end %>
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        Cart Total
+      </div>
+      <div class="col-sm-4">
+        <%= current_order.total_amount %>
+      </div>
     </div>
   </div>
 </div>
