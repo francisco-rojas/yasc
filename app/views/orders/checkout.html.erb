@@ -45,8 +45,11 @@
       <div class="col-sm-6">
         Cart Total
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2">
         <%= current_order.total_amount %>
+      </div>
+      <div class="col-sm-2">
+        <%= link_to 'PLACE ORDER', orders_submit_path, method: :post %>
       </div>
     </div>
   </div>
