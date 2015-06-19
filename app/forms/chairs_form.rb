@@ -1,7 +1,7 @@
 class ChairsForm
   include ActiveModel::Model
 
-  PARAMS = [:quantity, :building, :floor, :room, :product].freeze
+  PARAMS = [:quantity, :building, :floor, :room, :product, :extra_info].freeze
   attr_accessor *PARAMS
 
   validates_presence_of *PARAMS
@@ -33,6 +33,17 @@ class ChairsForm
 
   def quantity=(value)
     @quantity = value.try(:to_i)
+  end
+
+  def attributes=(attributes)
+    PARAMS.each do |attr|
+      self.send("#{attr}=", attributes[attr])
+    end
+    self
+  end
+
+  def permitted_params
+    [*PARAMS, extra_info: [:number_of_legs, :color, :with_back_rest]]
   end
 
   private

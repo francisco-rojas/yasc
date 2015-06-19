@@ -1,6 +1,6 @@
 <h1>Chairs</h1>
 
-<%= form_for(@form, url: items_path(type: :chairs), remote: true) do |f| %>
+<%= form_for(@form_object, url: items_path(type: :chairs), remote: true) do |f| %>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
@@ -39,6 +39,25 @@
           <%= f.label :room, 'Room:' %>
           <%= f.text_field :room, class: "form-control text-right" %>
         </div>
+      </div>
+
+      <div class="row">
+        <%= f.fields_for :extra_info do |p| %>
+          <div class="form-group col-sm-4">
+            <%= p.label :number_of_legs %><br>
+            <%= p.text_field :number_of_legs %>
+          </div>
+
+          <div class="form-group col-sm-4">
+            <%= p.label :color %><br>
+            <%= p.text_field :color %>
+          </div>
+
+          <div class="form-group col-sm-4">
+            <%= p.label :with_back_rest %><br>
+            <%= p.text_field :with_back_rest %>
+          </div>
+        <% end %>
       </div>
 
       <div class="row">

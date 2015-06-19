@@ -1,6 +1,6 @@
 <h1>Cubicles</h1>
 
-<%= form_for(@form, url: items_path(type: :cubicles), remote: true) do |f| %>
+<%= form_for(@form_object, url: items_path(type: :cubicles), remote: true) do |f| %>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
@@ -39,6 +39,20 @@
           <%= f.label :room, 'Room:' %>
           <%= f.text_field :room, class: "form-control text-right" %>
         </div>
+      </div>
+
+      <div class="row">
+        <%= f.fields_for :extra_info do |p| %>
+          <div class="form-group col-sm-4">
+            <%= p.label :number_of_walls %><br>
+            <%= p.text_field :number_of_walls %>
+          </div>
+
+          <div class="form-group col-sm-4">
+            <%= p.label :walls_height %><br>
+            <%= p.text_field :walls_height %>
+          </div>
+        <% end %>
       </div>
 
       <div class="row">

@@ -7,7 +7,7 @@ class PurchaseService
 
   def add_to_cart(data, product, quantity)
     ActiveRecord::Base.transaction do
-      item_data = data.slice(:building, :floor, :room, :quantity)
+      item_data = data.slice(:building, :floor, :room, :quantity, :extra_info)
       item_data.merge!(product: product)
       self.item = order.items.create!(item_data)
       update_total_amounts(quantity)

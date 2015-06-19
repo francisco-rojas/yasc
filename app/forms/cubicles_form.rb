@@ -2,7 +2,7 @@ class CubiclesForm
   include ActiveModel::Model
 
   PARAMS = [:quantity, :building, :floor, :room,
-            :product].freeze
+            :product, :extra_info].freeze
   attr_accessor *PARAMS
 
   validates_presence_of *PARAMS
@@ -34,6 +34,17 @@ class CubiclesForm
 
   def quantity=(value)
     @quantity = value.try(:to_i)
+  end
+
+  def attributes=(attributes)
+    PARAMS.each do |attr|
+      self.send("#{attr}=", attributes[attr])
+    end
+    self
+  end
+
+  def permitted_params
+    [*PARAMS, extra_info: [:number_of_walls, :walls_height]]
   end
 
   private

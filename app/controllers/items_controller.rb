@@ -2,16 +2,16 @@ class ItemsController < ApplicationController
   PRODUCT_NAMES = %(cubicles, chairs)
 
   def new
-    load_form_object
+    form_object
     load_locations
     load_products
     render_specific :new
   end
 
   def create
-    load_form_object(form_object_params)
+    form_object.attributes = form_object_params
 
-    if @form.submit(current_order)
+    if form_object.submit(current_order)
       render js: "window.location = '/checkout'"
     else
       render_specific(:create)
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   private
   def form_object_params
-    params.require(form_object_type).permit(form_object_class::PARAMS)
+    params.require(form_object_type).permit(form_object.permitted_params)
   end
 
   def load_locations
@@ -48,8 +48,8 @@ class ItemsController < ApplicationController
     form_object_type.to_s.camelize.constantize
   end
 
-  def load_form_object(attributes = {})
-    @form = form_object_class.new(attributes)
+  def form_object
+    @form_object ||= form_object_class.new
   end
 
   def load_products
