@@ -16,6 +16,9 @@
         Total Amount
       </div>
       <div class="col-sm-2">
+        Extra Info
+      </div>
+      <div class="col-sm-2">
         Remove
       </div>
     </div>
@@ -33,6 +36,9 @@
         </div>
         <div class="col-sm-2">
           <%= i.total_amount %>
+        </div>
+        <div class="col-sm-2">
+          <%= i.extra_info.to_a.to_sentence %>
         </div>
         <div class="col-sm-2">
           <%= link_to 'X', remove_item_path(i), method: :delete %>
